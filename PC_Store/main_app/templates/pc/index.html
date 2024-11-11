@@ -1,1 +1,20 @@
-<h1>test</h1>
+{% extends 'base.html' %} {% block content %}
+
+<h1>Pcs List</h1>
+
+{% for pc in pcs %}
+<div class="card">
+  <a href="{% url 'detail' pc.id %}">
+    <div class="card-content">
+      <span class="card-title">{{ pc.name }}</span>
+      
+      <p>description: {{ pc.description }}</p>
+
+      <div>
+        {% load static %} <img width="100px" height="100px" 
+        src={% static pc.image|cut:'main_app/static/' %} />
+      </div>
+    </div>
+  </a>
+</div>
+{% endfor %} {% endblock %}
