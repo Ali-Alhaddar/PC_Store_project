@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {% block content %}
+    <h1>Your Shopping Cart</h1>
+
+    <div class="object-list">
+
+   
+
+    {% for pc in cart_pcs %}
+    <div class="object-object">
+        <p>{{ pc.pc.name }} ({{ pc.quantity }})</p>
+        <p>Price: ${{ pc.pc.price }}</p>
+        <a href="{% url 'cart:remove_from_cart' object.id %}">Remove</a>
+    </div>
+    {% empty %}
+    <p>Your cart is empty.</p>
+    {% endfor %}
+
+    </div>
+
+    <p>Total Price: ${{ total_price }}</p>
+
+    <a href="{% url 'index' %}">Continue Shopping</a>
+
+{% endblock %}

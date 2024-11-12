@@ -10,12 +10,16 @@
     <div>
       <span class="card-title">{{ pc.name }}</span>
       
+      <p>price: {{ pc.price }}BD</p>
       <p>Description: {{ pc.description }}</p>
       <p>GPU: {{ pc.GPU }}</p>
       <p>CPU: {{ pc.CPU }}</p>
       <p>RAM: {{ pc.RAM }}</p>
       <p>storage: {{ pc.storage }}</p>
       <p>motherboard: {{ pc.motherboard }}</p>
+
+      <a href="#" class="buy-now-button">Buy Now</a>
+      <a class="buy-now-button" href="{% url 'add_to_cart' pc.id %}">Add to Cart</a>
      
   
       <div class="card-action">

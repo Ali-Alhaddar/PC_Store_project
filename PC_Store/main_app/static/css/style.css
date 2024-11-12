@@ -1,3 +1,8 @@
+* {
+  color: rgb(212, 255, 0);
+}
+
+
 
 .nav-wrapper {
   background-color: rgba(255, 98, 0, 0.669);
@@ -5,4 +10,43 @@
 
 .page-footer {
   background-color: rgba(255, 98, 0, 0.669);
+}
+
+body { 
+  background-image: url(https://static.vecteezy.com/system/resources/thumbnails/006/907/436/small_2x/old-wood-background-or-texture-wooden-board-texture-for-wallpaper-or-background-tree-background-with-copy-space-for-text-natural-dark-wooden-background-free-photo.JPG);
+  
+
+}
+
+.card {
+  background-image: url(https://img.freepik.com/premium-photo/dark-wood-floor-with-dark-wood-background-with-wooden-floor-dark-wood-floor_994023-489508.jpg);
+  background-size: cover;
+}
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap to the next row if necessary */
+  justify-content: space-between; /* Space items evenly along the main axis */
+  list-style: none; /* Remove list styles */
+  padding: 0;
+}
+
+.product-item {
+  flex: 1; /* Grow to fill available space evenly */
+  max-width: 30%; /* Limit item width to avoid overcrowding */
+  margin: 10px; /* Add spacing between items */
+  border: 1px solid #ccc; /* Add a border for visual separation */
+  padding: 10px;
+  text-align: center;
+}
+
+/* Style the "Buy Now" button */
+.buy-now-button {
+  display: block;
+  margin-top: 10px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
 }

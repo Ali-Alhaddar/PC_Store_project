@@ -25,12 +25,25 @@
           </ul>
 
           <ul class="right">
+            {% if user.is_authenticated %}
             
             <li><a href="{% url 'index' %}">View PCs</a></li>
 
             <li><a href="{% url 'Pcs_create' %}">Add a PC</a></li>
-           
 
+            <li><a href="{% url 'cart' %}">Cart</a></li>
+           
+            <li>
+              <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit">Log Out</button>
+              </form>
+            </li>
+            {% else %}
+            <li><a href="{% url 'signup' %}">Sign up</a></li>
+            <li><a href="{% url 'login' %}">Log In</a></li>
+            
+            {% endif %}
             
 
 
@@ -44,8 +57,6 @@
     <footer class="page-footer">
       <div class="right">All Right reserves &copy; 2024</div>
       <li><a href="{% url 'about' %}">About Us</a></li>
-      
-
     </footer>
   </body>
 </html>
