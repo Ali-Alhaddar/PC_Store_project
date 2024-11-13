@@ -1,55 +1,43 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-  <h1>{{ product.name }} Details</h1>
-
-  <div class="card">
-    <div class="card-content">
-      
-      <div>
-        {% load static %}
-        <img width="100px" height="100px" src={% static product.image|cut:'main_app/static/'%} alt="{{ product.name }}" />
-      </div>
-      <div>
-        <span class="card-title">{{ product.name }}</span>
-        
-        <p>Price: {{ product.price }} BD</p>
-        <p>Description: {{ product.description }}</p>
-        
-
-       
-        <div class="card-action">
-          {% if product.pc %}
-          
-            <a href="{% url 'pcs_update' product.pc.id %}">Edit</a>
-            <a href="{% url 'pcs_delete' product.pc.id %}">Delete</a>
-          {% elif product.monitor %}
-            
-            <a href="{% url 'monitors_update' product.monitor.id %}">Edit</a>
-            <a href="{% url 'monitors_delete' product.monitor.id %}">Delete</a>
-          {% elif product.keyboard %}
-           
-            <a href="{% url 'keyboards_update' product.keyboard.id %}">Edit</a>
-            <a href="{% url 'keyboards_delete' product.keyboard.id %}">Delete</a>
-          {% endif %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            {% if product.image %}
+            <img width="100px" height="100px" src={% static product.image|cut:'main_app/static/'%} alt="{{ product.name }}" />
+            {% endif %}
         </div>
+        <div class="col-md-6">
+            <h1 class="mb-4">{{ product.name }}</h1>
+            <p class="h3 text-primary mb-4">{{ product.price }}BD</p>
+            <p class="mb-4">{{ product.description }}</p>
+            {% if product.GPU %}
+                <p><strong>GPU:</strong> {{ product.GPU }}</p>
+                <p><strong>CPU:</strong> {{ product.CPU }}</p>
+                <p><strong>RAM:</strong> {{ product.RAM }}</p>
+                <p><strong>Storage:</strong> {{ product.storage }}</p>
+                <p><strong>Motherboard:</strong> {{ product.motherboard }}</p>
+                <a href="{% url 'pcs_update' product.id %}">Edit</a>
+                <a href="{% url 'pcs_delete' product.id %}">Delete</a>
 
-        
-        {% if product.pc %}
-          <p>GPU: {{ product.pc.GPU }}</p>
-          <p>CPU: {{ product.pc.CPU }}</p>
-          <p>RAM: {{ product.pc.RAM }}</p>
-          <p>Storage: {{ product.pc.storage }}</p>
-          <p>Motherboard: {{ product.pc.motherboard }}</p>
-        {% elif product.monitor %}
-          <p>Resolution: {{ product.monitor.resolution }}</p>
-          <p>Screen Size: {{ product.monitor.screen_size }}</p>
-          <p>Display Type:> {{ product.monitor.display_type }}</p>
-        {% elif product.keyboard %}
-          <p>Keyboard Type: {{ product.keyboard.description }}</p>
-        {% endif %}
-      </div>
+            {% endif %}
+            {% if product.screen_size %}
+                <p><strong>Screen Size:</strong> {{ product.screen_size }}</p>
+                <p><strong>Resolution:</strong> {{ product.resolution }}</p>
+                <p><strong>Display Type:</strong> {{ product.display_type }}</p>
+                <a href="{% url 'monitors_update' product.id %}">Edit</a>
+                <a href="{% url 'monitors_delete' product.id %}">Delete</a>
+            {% endif %}
+            
+            
+            <div class="mt-4">
+              <form method="POST" action="{% url 'add_to_cart' model_name product.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary btn-lg">Add to Cart</button>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
-
+</div>
 {% endblock %}

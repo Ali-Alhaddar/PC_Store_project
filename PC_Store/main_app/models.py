@@ -40,6 +40,7 @@ class Keybord(models.Model):
     name = models.CharField(max_length=100, default="")
     price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField(max_length=250)
+    Mechanical = models.TextField(max_length=150, default="")
     image = models.ImageField(upload_to='main_app/static/uploads/', default="")
 
     def __str__(self):
@@ -50,8 +51,8 @@ class Keybord(models.Model):
     
 class CartItem(models.Model):
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
-    object_id = models.PositiveIntegerField()
-    content_object = GenericForeignKey('content_type', 'object_id')
+    product_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey('content_type', 'product_id')
     quantity = models.PositiveIntegerField(default=0)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date_added = models.DateTimeField(auto_now_add=True)

@@ -1,7 +1,38 @@
-{% extends 'base.html'%} {% block content %}
-
-<h1>PC Store</h1>
-<hr />
-
-
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="hero-section text-center py-5 bg-light mb-5">
+    <h1 class="display-4">Welcome to Tech Trove</h1>
+    <p class="lead">Your one-stop shop for premium tech equipment</p>
+    <a href="{% url 'index' %}" class="btn btn-primary btn-lg">Shop Now</a>
+</div>
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <h3>Gaming PCs</h3>
+                <p>High-performance custom gaming computers</p>
+                <a href="{% url 'index' %}" class="btn btn-outline-primary">View PCs</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <h3>Monitors</h3>
+                <p>Professional and gaming displays</p>
+                <a href="{% url 'index' %}" class="btn btn-outline-primary">View Monitors</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <h3>Keyboards</h3>
+                <p>Mechanical and gaming keyboards</p>
+                <a href="{% url 'index' %}" class="btn btn-outline-primary">View Keyboards</a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
