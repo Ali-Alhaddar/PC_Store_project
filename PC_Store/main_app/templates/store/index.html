@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1 class="mb-4">Our Products</h1>
+<div class="row">
+    <div class="col-md-3">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Categories</h5>
+            </div>
+            <div class="list-group list-group-flush">
+                <a href="#pcs" class="list-group-item list-group-item-action">Gaming PCs</a>
+                <a href="#monitors" class="list-group-item list-group-item-action">Monitors</a>
+                <a href="#keyboards" class="list-group-item list-group-item-action">Keyboards</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <section id="pcs" class="mb-5">
+            <h2 class="mb-4">Gaming PCs</h2>
+            <div class="row">
+                {% for pc in pcs %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        {% if pc.image %}
+                        {% load static %} <img width="100px" height="100px" 
+                        src={% static pc.image|cut:'main_app/static/' %} alt="{{ pc.name }}" />
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ pc.name }}</h5>
+                            <p class="card-text">${{ pc.price }}</p>
+                            <a href="{% url 'product_detail' pc.id 'pc' %}" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        <section id="monitors" class="mb-5">
+            <h2 class="mb-4">Monitors</h2>
+            <div class="row">
+                {% for monitor in monitors %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        {% if monitor.image %}
+                        <img width="100px" height="100px" 
+                        src={% static monitor.image|cut:'main_app/static/' %} alt="{{ monitor.name }}" />
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ monitor.name }}</h5>
+                            <p class="card-text">${{ monitor.price }}</p>
+                            <a href="{% url 'product_detail' monitor.id 'monitor' %}" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        <section id="keyboards">
+            <h2 class="mb-4">Keyboards</h2>
+            <div class="row">
+                {% for keyboard in keyboards %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        {% if keyboard.image %}
+                        <img width="100px" height="100px" 
+                        src={% static keyboard.image|cut:'main_app/static/' %} alt="{{ keyboard.name }}" />
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ keyboard.name }}</h5>
+                            <p class="card-text">${{ keyboard.price }}</p>
+                            <a href="{% url 'product_detail' keyboard.id 'keyboard' %}" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}
