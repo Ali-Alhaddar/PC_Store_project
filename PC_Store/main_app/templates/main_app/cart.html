@@ -1,24 +1,34 @@
-{% extends 'base.html' %} {% block content %}
-    <h1>Your Shopping Cart</h1>
+{% extends 'base.html' %}
 
-    <div class="object-list">
+{% block content %}
+<h2>Your Cart</h2>
 
-   
-
-    {% for pc in cart_pcs %}
-    <div class="object-object">
-        <p>{{ pc.pc.name }} ({{ pc.quantity }})</p>
-        <p>Price: ${{ pc.pc.price }}</p>
-        <a href="{% url 'cart:remove_from_cart' object.id %}">Remove</a>
-    </div>
-    {% empty %}
+{% if cart_items %}
+    <ul>
+        {% for cart_item in cart_items %}
+            <li>
+                {{ cart_item.quantity }} x 
+                {% if cart_item.content_type.model == 'pc' %}
+                    {{ cart_item.content_object.name }} (PC) - ${{ cart_item.content_object.price|floatformat:2 }}
+                {% elif cart_item.content_type.model == 'monitor' %}
+                    {{ cart_item.content_object.name }} (Monitor) - ${{ cart_item.content_object.price|floatformat:2 }}
+                {% elif cart_item.content_type.model == 'keyboard' %}
+                    {{ cart_item.content_object.name }} (Keyboard) - ${{ cart_item.content_object.price|floatformat:2 }}
+                {% elif cart_item.content_type.model == 'mouse' %}
+                    {{ cart_item.content_object.name }} (Mouse) - ${{ cart_item.content_object.price|floatformat:2 }}
+                {% endif %}
+                <a href="{% url 'remove_from_cart' cart_item.id %}">Remove</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <p>Total: ${{ total_price|floatformat:2 }}</p>
+{% else %}
     <p>Your cart is empty.</p>
-    {% endfor %}
+{% endif %}
 
-    </div>
-
-    <p>Total Price: ${{ total_price }}</p>
-
+<div>
     <a href="{% url 'index' %}">Continue Shopping</a>
+    <a href="{% url 'checkout' %}">Proceed to Checkout</a>
+</div>
 
 {% endblock %}

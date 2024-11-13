@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ product.name }} Details</h1>
+
+  <div class="card">
+    <div class="card-content">
+      
+      <div>
+        {% load static %}
+        <img width="100px" height="100px" src={% static product.image|cut:'main_app/static/'%} alt="{{ product.name }}" />
+      </div>
+      <div>
+        <span class="card-title">{{ product.name }}</span>
+        
+        <p>Price: {{ product.price }} BD</p>
+        <p>Description: {{ product.description }}</p>
+        
+
+       
+        <div class="card-action">
+          {% if product.pc %}
+          
+            <a href="{% url 'pcs_update' product.pc.id %}">Edit</a>
+            <a href="{% url 'pcs_delete' product.pc.id %}">Delete</a>
+          {% elif product.monitor %}
+            
+            <a href="{% url 'monitors_update' product.monitor.id %}">Edit</a>
+            <a href="{% url 'monitors_delete' product.monitor.id %}">Delete</a>
+          {% elif product.keyboard %}
+           
+            <a href="{% url 'keyboards_update' product.keyboard.id %}">Edit</a>
+            <a href="{% url 'keyboards_delete' product.keyboard.id %}">Delete</a>
+          {% endif %}
+        </div>
+
+        
+        {% if product.pc %}
+          <p>GPU: {{ product.pc.GPU }}</p>
+          <p>CPU: {{ product.pc.CPU }}</p>
+          <p>RAM: {{ product.pc.RAM }}</p>
+          <p>Storage: {{ product.pc.storage }}</p>
+          <p>Motherboard: {{ product.pc.motherboard }}</p>
+        {% elif product.monitor %}
+          <p>Resolution: {{ product.monitor.resolution }}</p>
+          <p>Screen Size: {{ product.monitor.screen_size }}</p>
+          <p>Display Type:> {{ product.monitor.display_type }}</p>
+        {% elif product.keyboard %}
+          <p>Keyboard Type: {{ product.keyboard.description }}</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Product List</h1>
+
+  <!-- PCs Section -->
+  <h2>Pcs</h2>
+  <div class="product-list">
+    {% for pc in pcs %}
+      <div class="card">
+        <a href="{% url 'product_detail' pc.id 'pc' %}">
+          <div class="card-content">
+            <div>
+              {% load static %} <img width="100px" height="100px" 
+              src={% static pc.image|cut:'main_app/static/' %} alt="{{ pc.name }}" />
+            </div>
+            <h3>{{ pc.name }}</h3>
+            <p>{{ pc.description }}</p>
+            <p>Price: {{ pc.price }} BD</p>
+          </div>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- Monitors Section -->
+  <h2>Monitors</h2>
+  <div class="product-list">
+    {% for monitor in monitors %}
+      <div class="card">
+        <a href="{% url 'product_detail' monitor.id 'monitor' %}">
+          <div class="card-content">
+            <div>
+              {% load static %} <img width="100px" height="100px" 
+              src={% static monitor.image|cut:'main_app/static/' %} alt="{{ monitor.name }}" />
+            </div>
+            <h3>{{ monitor.name }}</h3>
+            <p>{{ monitor.description }}</p>
+            <p>Price: {{ monitor.price }} BD</p>
+          </div>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- Keyboards Section -->
+  <h2>Keyboards</h2>
+  <div class="product-list">
+    {% for keyboard in keyboards %}
+      <div class="card">
+        <a href="{% url 'product_detail' keyboard.id 'keyboard' %}">
+          <div class="card-content">
+            <div>
+              {% load static %} <img width="100px" height="100px" 
+              src={% static keyboard.image|cut:'main_app/static/' %} alt="{{ keyboard.name }}" />
+            </div>
+            <h3>{{ keyboard.name }}</h3>
+            <p>{{ keyboard.description }}</p>
+            <p>Price: {{ keyboard.price }} BD</p>
+          </div>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

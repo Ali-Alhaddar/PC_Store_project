@@ -17,9 +17,36 @@ class Pc(models.Model):
 
     def __str__(self):
         return f"{self.name}"
-
+    
     def get_absolute_url(self):
         return reverse('detail', kwargs={'pc_id': self.id})
+
+class Monitor(models.Model):
+    name = models.CharField(max_length=100, default="")
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    description = models.TextField(max_length=250)
+    screen_size = models.TextField(max_length=100, default="")
+    resolution = models.TextField(max_length=100, default="")
+    display_type = models.TextField(max_length=100, default="")
+    image = models.ImageField(upload_to='main_app/static/uploads/', default="")
+
+    def __str__(self):
+        return f"{self.name}"
+    
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'Monitor_id': self.id})
+
+class Keybord(models.Model):
+    name = models.CharField(max_length=100, default="")
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    description = models.TextField(max_length=250)
+    image = models.ImageField(upload_to='main_app/static/uploads/', default="")
+
+    def __str__(self):
+        return f"{self.name}"
+    
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'Keybord_id': self.id})
     
 class CartItem(models.Model):
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
